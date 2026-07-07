@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function Retrieval({ apiKey, authToken }) {
   const [activeTab, setActiveTab] = useState('search'); // 'search' or 'chat'
@@ -23,7 +24,7 @@ export default function Retrieval({ apiKey, authToken }) {
     setSearching(true);
     setSearchResults(null);
     try {
-      const res = await fetch('http://localhost:5000/api/search', {
+      const res = await fetch(`${API_BASE_URL}/api/search`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +58,7 @@ export default function Retrieval({ apiKey, authToken }) {
     setChatting(true);
 
     try {
-      const res = await fetch('http://localhost:5000/api/chat', {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -202,7 +203,7 @@ export default function Retrieval({ apiKey, authToken }) {
                         <div style={{ marginTop: '8px', display: 'flex', gap: '12px' }}>
                           {doc.filepath && (
                             <a
-                              href={`http://localhost:5000/${doc.filepath}`}
+                              href={`${API_BASE_URL}/${doc.filepath}`}
                               target="_blank"
                               rel="noreferrer"
                               className="btn btn-secondary"

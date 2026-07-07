@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function KnowledgeGraph({ apiKey, authToken }) {
   const canvasRef = useRef(null);
@@ -28,7 +29,7 @@ export default function KnowledgeGraph({ apiKey, authToken }) {
     if (!authToken) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/graph', {
+      const res = await fetch(`${API_BASE_URL}/api/graph`, {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }

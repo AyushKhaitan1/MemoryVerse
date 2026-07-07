@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function Dashboard({ apiKey, authToken, documents, onNavigate, onFetchDocs }) {
   const [synthesis, setSynthesis] = useState('');
@@ -16,7 +17,7 @@ export default function Dashboard({ apiKey, authToken, documents, onNavigate, on
     }
     setLoadingSynthesis(true);
     try {
-      const res = await fetch('http://localhost:5000/api/synthesis', {
+      const res = await fetch(`${API_BASE_URL}/api/synthesis`, {
         headers: {
           'x-gemini-key': apiKey,
           'Authorization': `Bearer ${authToken}`

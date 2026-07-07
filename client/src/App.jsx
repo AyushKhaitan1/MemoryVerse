@@ -6,6 +6,7 @@ import Timeline from './components/Timeline';
 import Retrieval from './components/Retrieval';
 import Settings from './components/Settings';
 import Auth from './components/Auth';
+import { API_BASE_URL } from './config';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -32,7 +33,7 @@ export default function App() {
 
   const checkServerStatus = async () => {
     try {
-      const res = await fetch('http://localhost:5000/api/status');
+      const res = await fetch(`${API_BASE_URL}/api/status`);
       if (res.ok) {
         const data = await res.json();
         setHasServerApiKey(data.hasServerApiKey || false);
@@ -46,7 +47,7 @@ export default function App() {
     if (!authToken) return;
     setFetchingDocs(true);
     try {
-      const res = await fetch('http://localhost:5000/api/documents', {
+      const res = await fetch(`${API_BASE_URL}/api/documents`, {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function Timeline({ apiKey, authToken, documents, onFetchDocs }) {
   const [timelineData, setTimelineData] = useState({});
@@ -13,7 +14,7 @@ export default function Timeline({ apiKey, authToken, documents, onFetchDocs }) 
     if (!authToken) return;
     setLoading(true);
     try {
-      const res = await fetch('http://localhost:5000/api/timeline', {
+      const res = await fetch(`${API_BASE_URL}/api/timeline`, {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }
@@ -40,7 +41,7 @@ export default function Timeline({ apiKey, authToken, documents, onFetchDocs }) 
   const handleDelete = async (id) => {
     if (!window.confirm('Are you sure you want to delete this milestone?')) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/documents/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/documents/${id}`, {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authToken}`
@@ -172,7 +173,7 @@ export default function Timeline({ apiKey, authToken, documents, onFetchDocs }) 
                         <div style={{ marginTop: '8px', display: 'flex', gap: '12px' }}>
                           {doc.filepath && (
                             <a
-                              href={`http://localhost:5000/${doc.filepath}`}
+                              href={`${API_BASE_URL}/${doc.filepath}`}
                               target="_blank"
                               rel="noreferrer"
                               className="btn btn-secondary"

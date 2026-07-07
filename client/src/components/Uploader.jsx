@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { API_BASE_URL } from '../config';
 
 export default function Uploader({ apiKey, authToken, onUploadSuccess }) {
   const [dragActive, setDragActive] = useState(false);
@@ -47,7 +48,7 @@ export default function Uploader({ apiKey, authToken, onUploadSuccess }) {
     formData.append('file', file);
 
     try {
-      const res = await fetch('http://localhost:5000/api/upload', {
+      const res = await fetch(`${API_BASE_URL}/api/upload`, {
         method: 'POST',
         headers: {
           'x-gemini-key': apiKey,
@@ -78,7 +79,7 @@ export default function Uploader({ apiKey, authToken, onUploadSuccess }) {
     setStatusMsg({ type: 'info', text: `Analyzing URL "${linkUrl}" using Gemini...` });
 
     try {
-      const res = await fetch('http://localhost:5000/api/link', {
+      const res = await fetch(`${API_BASE_URL}/api/link`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
