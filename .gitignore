@@ -1,0 +1,19 @@
+# Node modules
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Production build output
+client/dist/
+
+# Local env files
+.env
+server/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Ingested uploads (to prevent committing raw uploaded user files)
+server/uploads/*
+!server/uploads/.gitkeep

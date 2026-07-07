@@ -1,0 +1,15 @@
+{
+  "name": "memoryverse-ai",
+  "version": "1.0.0",
+  "description": "MemoryVerse AI '26 - Intelligent Digital Identity System",
+  "main": "server/server.js",
+  "scripts": {
+    "setup": "npm install && npm install --prefix server && npm install --prefix client",
+    "server": "npm start --prefix server",
+    "client": "npm run dev --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
