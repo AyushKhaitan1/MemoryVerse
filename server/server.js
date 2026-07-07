@@ -36,7 +36,7 @@ if (!fs.existsSync(uploadDir)) {
 app.use('/uploads', express.static(uploadDir));
 
 // Connect to MongoDB
-const mongoUri = process.env.MONGO_URI || 'mongodb://localhost:27017/memoryverse';
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/memoryverse';
 mongoose.connect(mongoUri)
   .then(() => console.log('MongoDB connected successfully.'))
   .catch(err => console.error('MongoDB connection error:', err));

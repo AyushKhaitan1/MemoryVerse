@@ -1,8 +1,11 @@
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
 import { User, Document, Skill, Relationship } from './models.js';
 
-const mongoUri = 'mongodb://localhost:27017/memoryverse';
+dotenv.config();
+
+const mongoUri = process.env.MONGO_URI || process.env.MONGODB_URI || 'mongodb://localhost:27017/memoryverse';
 
 const mockDocs = [
   {
